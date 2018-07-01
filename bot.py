@@ -1,5 +1,6 @@
 import discord
 import asyncio
+import os
 
 client = discord.Client()
 
@@ -25,4 +26,4 @@ async def on_message(message):
         await asyncio.sleep(5)
         await client.send_message(message.channel, 'Done sleeping')
 
-client.run(process.env.BOT_TOKEN)
+client.run(os.environ.get('BOT_TOKEN'))
