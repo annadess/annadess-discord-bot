@@ -29,7 +29,7 @@ async def on_message(message):
         members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
         for name in members_new:
-            cur.execute("INSERT INTO MEMBERS (username) VALUES ({});".format(name))
+            cur.execute("INSERT INTO MEMBERS (username) VALUES (\"{}\");".format(name))
             conn.commit()
         await client.send_message(message.channel, 'Sucessfully added:')
         await client.send_message(message.channel, members_new)
