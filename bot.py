@@ -13,8 +13,9 @@ async def on_ready():
     print('------')
 
 def isCommand(message, command):
-    return message.content.startswith(prefix+message)
     await client.send_message(message.channel, 'detected')
+    return message.content.startswith(prefix+message)
+    
     
 @asyncio.coroutine
 @client.event
