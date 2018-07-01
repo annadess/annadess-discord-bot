@@ -24,11 +24,11 @@ async def on_message(message):
         await client.send_message(message.channel, 'Kuno x Wyn is definitely the best ship')
     elif isCommand(message, 'writefile'):
         with open("file.txt") as file:
-            f.write("sample")
+            await f.write("sample")
             await client.send_message(message.channel, 'written to file')
     elif isCommand(message, 'readfile'):
         with open("file.txt") as file:
-            content = f.read("sample")
+            await content = f.read("sample")
             await client.send_message(message.channel, content)        
 
 client.run(os.environ.get('BOT_TOKEN'))
