@@ -2,4 +2,4 @@ discord.py==0.16.6
 aiohttp
 websockets
 chardet
-psycopg2
+psycopg2-binary
