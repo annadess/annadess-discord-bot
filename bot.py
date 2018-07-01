@@ -26,13 +26,14 @@ async def on_message(message):
     elif isCommand(message, 'updateusers'):
         members_curr = message.server.members
         cur.execute("SELECT username FROM MEMBERS")
-        members_stored = c.fetchall()
+        members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
         for name in members_new:
             cur.execute("INSERT INTO MEMBERS (username) VALUES ({});".format(name))
             conn.commit()
         await client.send_message(message.channel, 'Sucessfully added:')
         await client.send_message(message.channel, members_new)
-        
+    elif isCommand(message, 'closedb'):
+        conn.close()
 
 client.run(os.environ.get('BOT_TOKEN'))
