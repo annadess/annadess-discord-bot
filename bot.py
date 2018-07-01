@@ -26,8 +26,8 @@ async def on_message(message):
     elif message.content.startswith(prefix+'sleep'):
         await asyncio.sleep(5)
         await client.send_message(message.channel, 'Done sleeping')
-	elif message.content.startswith(prefix+'bestship'):
-		await client.send_message(message.channel, 'Kuno x Wyn is definitely the best ship')
-		
+    elif message.content.startswith(prefix+'bestship'):
+        await client.send_message(message.channel, 'Kuno x Wyn is definitely the best ship')
+        
 
 client.run(os.environ.get('BOT_TOKEN'))
