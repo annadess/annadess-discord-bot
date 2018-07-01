@@ -24,13 +24,14 @@ async def on_message(message):
     if isCommand(message,'bestship'):
         await client.send_message(message.channel, 'Kuno x Wyn is definitely the best ship')
     elif isCommand(message, 'updateusers'):
+        sql = """INSERT INTO MEMBERS(username)
+             VALUES(%s);"""
         members_curr = message.server.members
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
-        for name in members_new:
-            cur.execute("INSERT INTO MEMBERS (username) VALUES (\"{}\");".format(name))
-            conn.commit()
+        cur.executemany(sql, members_new)
+        conn.commit()
         await client.send_message(message.channel, 'Sucessfully added:')
         await client.send_message(message.channel, members_new)
     elif isCommand(message, 'closedb'):
