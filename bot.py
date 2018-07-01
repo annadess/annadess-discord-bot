@@ -14,11 +14,14 @@ async def on_ready():
 
 def isCommand(message, command):
     return message.content.startswith(prefix+message)
+    await client.send_message(message.channel, 'detected')
     
 @asyncio.coroutine
 @client.event
 async def on_message(message):
     if isCommand(message,'bestship'):
         await client.send_message(message.channel, 'Kuno x Wyn is definitely the best ship')
+    else:
+        print('undetected')
 
 client.run(os.environ.get('BOT_TOKEN'))
