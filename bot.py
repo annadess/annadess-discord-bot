@@ -13,7 +13,7 @@ async def on_ready():
     print('------')
 
 def isCommand(message, command):
-    await client.send_message(message.channel, 'detected')
+    print('detected')
     return message.content.startswith(prefix+message)
     
     
