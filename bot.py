@@ -4,6 +4,8 @@ import os
 
 client = discord.Client()
 prefix = ','
+f=open("file.txt","w+")
+f.close()
 
 @client.event
 async def on_ready():
