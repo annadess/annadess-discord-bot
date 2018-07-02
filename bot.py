@@ -30,10 +30,10 @@ async def on_message(message):
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
-        #cur.executemany(sql, members_new)
-        #conn.commit()
+        cur.executemany(sql, [str(i) for i in members_new])
+        conn.commit()
         await client.send_message(message.channel, 'Sucessfully added:')
-        await client.send_message(message.channel, [str(i) for i in members_new])
+        await client.send_message(message.channel, members_new)
     elif isCommand(message, 'closedb'):
         conn.close()
 
