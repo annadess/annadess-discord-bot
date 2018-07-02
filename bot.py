@@ -8,7 +8,7 @@ client = discord.Client()
 prefix = '.'
 conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
 cur = conn.cursor()
-games = [discord.Game(name="detective"),discord.Game(name="with Sumo"),discord.Game(name="the android sent by CyberLife"),discord.Game(name="baseball with Hank")]
+games = [discord.Game(name="detective",type=1),discord.Game(name="with Sumo",type=1),discord.Game(name="the android sent by CyberLife",type=1),discord.Game(name="baseball with Hank",type=1)]
 
 @client.event
 async def on_ready():
