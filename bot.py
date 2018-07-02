@@ -42,6 +42,8 @@ async def on_message(message):
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
+        print(members_new)
+        print(len(members_new))
         if len(members_new)==0:
             await client.send_message(message.channel, 'Sir, my database is up to date with the members of this server, no changes required.')
         else:
@@ -66,7 +68,7 @@ async def on_message(message):
                     response = await client.wait_for_message(author=message.author,check=checkEdit)
                     if response.content.startswith('abort'):
                         await client.send_message(message.channel, 'Process aborted');
-                        break
+                        pass
                     else:
                         sql = """UPDATE MEMBERS SET username=%s 
                         WHERE ID=%d"""
