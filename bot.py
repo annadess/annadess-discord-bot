@@ -31,12 +31,12 @@ async def on_message(message):
         members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
         for member in members_new:
-            try:
-                cur.execute(sql, str(member))
-            except:
-                print("error at")
-                print(member.name)
-                pass
+            #try:
+            cur.execute(sql, str(member))
+            #except:
+                #print("error at")
+                #print(member.name)
+                #pass
         conn.commit()
         await client.send_message(message.channel, 'Sucessfully added:')
         await client.send_message(message.channel, [str(i) for i in members_new])
