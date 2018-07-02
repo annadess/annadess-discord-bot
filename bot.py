@@ -72,7 +72,7 @@ async def on_message(message):
                         pass
                     else:
                         sql = """UPDATE MEMBERS SET username=%s 
-                        WHERE ID=%d"""
+                        WHERE ID=%s"""
                         cur.execute(sql,[str(member),int(response.content)])
                         await client.send_message(message.channel, 'Entry successfully updated');
                         
