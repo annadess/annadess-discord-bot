@@ -44,6 +44,8 @@ async def on_message(message):
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
+        print(members_curr)
+        print(members_stored)
         print(members_new)
         print(len(members_new))
         if len(members_new)==0:
