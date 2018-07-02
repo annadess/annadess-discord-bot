@@ -84,5 +84,7 @@ async def on_message(message):
     elif isCommand(message, 'closedb'):
         conn.close()
         await client.send_message(message.channel, 'Connection with database closed sir, ready for restart.');
+    elif isCommand(message, 'changename'):
+        await client.edit_profile(username='ConnorBot')
         
 client.run(os.environ.get('BOT_TOKEN'))
