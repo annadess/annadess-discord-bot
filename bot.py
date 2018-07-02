@@ -24,7 +24,7 @@ async def on_message(message):
     if isCommand(message,'bestship'):
         await client.send_message(message.channel, 'Kuno x Wyn is definitely the best ship')
     elif isCommand(message, 'updateusers'):
-        sql = """INSERT INTO MEMBERS
+        sql = """INSERT INTO MEMBERS(username)
              VALUES(%s);"""
         members_curr = message.server.members
         cur.execute("SELECT username FROM MEMBERS")
