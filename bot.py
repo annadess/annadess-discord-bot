@@ -26,8 +26,9 @@ def checkEdit(message):
         return True
     cur.execute("SELECT ID FROM MEMBERS")
     query = cur.fetchall()
+    query = [i[0] for i in query]
     print(query)
-    if int(message.content) in list(query):#reduce(lambda x,y :x+y ,query):
+    if int(message.content) in query:
         return True
     else:
         return False
