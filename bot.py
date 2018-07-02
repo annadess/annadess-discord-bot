@@ -40,9 +40,9 @@ async def on_message(message):
         await client.send_message(message.channel, 'Sir, the Kuno and Wyn pairing, is undoubtedly, the best pairing in this currently running role playing game.')
     elif isCommand(message, 'updateusers'):
         members_curr = message.server.members
+        members_curr = [str(i) for i in members_curr]
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
-        members_stored = [str(i) for i in members_stored]
         members_new = list(set(members_curr)-set(members_stored))
         print(members_new)
         print(len(members_new))
