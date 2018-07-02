@@ -2,7 +2,6 @@ import discord
 import asyncio
 import os
 import psycopg2
-import functools
 
 client = discord.Client()
 prefix = '.'
@@ -27,7 +26,7 @@ def checkEdit(message):
         return True
     cur.execute("SELECT ID FROM MEMBERS")
     query = cur.fetchall()
-    if int(message.content) in reduce(lambda x,y :x+y ,query):
+    if int(message.content) in list(query):#reduce(lambda x,y :x+y ,query):
         return True
     else:
         return False
