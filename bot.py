@@ -42,6 +42,7 @@ async def on_message(message):
         members_curr = message.server.members
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
+        members_stored = [str(i) for i in members_stored]
         members_new = list(set(members_curr)-set(members_stored))
         print(members_new)
         print(len(members_new))
