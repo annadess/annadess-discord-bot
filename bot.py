@@ -32,7 +32,7 @@ async def on_message(message):
         members_new = list(set(members_curr)-set(members_stored))
         for member in members_new:
             #try:
-            cur.execute(sql, str(member))
+            cur.execute(sql, [str(member)])
             #except:
                 #print("error at")
                 #print(member.name)
