@@ -30,7 +30,9 @@ async def on_message(message):
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
         members_new = list(set(members_curr)-set(members_stored))
-        cur.executemany(sql, [str(i) for i in members_new])
+        for name in members_new:
+            try:
+                cur.execute(sql, str(name))
         conn.commit()
         await client.send_message(message.channel, 'Sucessfully added:')
         await client.send_message(message.channel, members_new)
