@@ -43,6 +43,7 @@ async def on_message(message):
         members_curr = [str(i) for i in members_curr]
         cur.execute("SELECT username FROM MEMBERS")
         members_stored = cur.fetchall()
+        members_stored = [i[0] for i in members_stored]
         members_new = list(set(members_curr)-set(members_stored))
         print(members_curr)
         print(members_stored)
@@ -53,7 +54,7 @@ async def on_message(message):
         else:
             await client.send_message(message.channel, 'It seems there are new members sir.')
             for member in members_new:
-                await client.send_message(message.channel, 'Would you like to add '+member.name+' as a new entry, or would you like to replace an entry?')
+                await client.send_message(message.channel, 'Would you like to add '+member+' as a new entry, or would you like to replace an entry?')
                 await client.send_message(message.channel, '(type new or edit)')
                 response = await client.wait_for_message(author=message.author,check=checkEntry)
                 if response.content.startswith('new'):
