@@ -2,7 +2,7 @@ import discord
 import asyncio
 import os
 import psycopg2
-import functools.reduce
+import functools
 
 client = discord.Client()
 prefix = '.'
