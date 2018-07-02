@@ -44,9 +44,9 @@ async def on_message(message):
         if len(members_new)==0:
             await client.send_message(message.channel, 'Sir, my database is up to date with the members of this server, no changes required.')
         else:
-            await client.send_message(message.channel, 'It seems are new members sir.')
+            await client.send_message(message.channel, 'It seems there are new members sir.')
             for member in members_new:
-                await client.send_message(message.channel, 'Would you like to add '+member.name()+' as a new entry, or would you like to replace an entry?')
+                await client.send_message(message.channel, 'Would you like to add '+member.name+' as a new entry, or would you like to replace an entry?')
                 await client.send_message(message.channel, '(type new or edit)')
                 response = await client.wait_for_message(author=message.author,check=checkEntry)
                 if response.content.startswith('new'):
