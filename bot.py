@@ -27,7 +27,6 @@ def checkEdit(message):
     cur.execute("SELECT ID FROM MEMBERS")
     query = cur.fetchall()
     query = [i[0] for i in query]
-    print(query)
     if int(message.content) in query:
         return True
     else:
@@ -45,10 +44,6 @@ async def on_message(message):
         members_stored = cur.fetchall()
         members_stored = [i[0] for i in members_stored]
         members_new = list(set(members_curr)-set(members_stored))
-        print(members_curr)
-        print(members_stored)
-        print(members_new)
-        print(len(members_new))
         if len(members_new)==0:
             await client.send_message(message.channel, 'Sir, my database is up to date with the members of this server, no changes required.')
         else:
@@ -84,7 +79,5 @@ async def on_message(message):
     elif isCommand(message, 'closedb'):
         conn.close()
         await client.send_message(message.channel, 'Connection with database closed sir, ready for restart.');
-    elif isCommand(message, 'changename'):
-        await client.edit_profile(username='ConnorBot')
         
 client.run(os.environ.get('BOT_TOKEN'))
