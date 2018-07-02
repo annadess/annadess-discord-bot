@@ -16,7 +16,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
-    change_presence(game=random.choice(games),afk=False)
+    await client.change_presence(game=random.choice(games),afk=False)
 
 def isCommand(message,command):
     return message.content.startswith(prefix+command)
