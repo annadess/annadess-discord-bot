@@ -26,6 +26,7 @@ def checkEdit(message):
         return True
     cur.execute("SELECT ID FROM MEMBERS")
     query = cur.fetchall()
+    print(query)
     if int(message.content) in list(query):#reduce(lambda x,y :x+y ,query):
         return True
     else:
@@ -75,5 +76,6 @@ async def on_message(message):
         conn.commit()
     elif isCommand(message, 'closedb'):
         conn.close()
+        await client.send_message(message.channel, 'Connection with database closed sir, ready for restart.');
         
 client.run(os.environ.get('BOT_TOKEN'))
