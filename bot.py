@@ -26,7 +26,7 @@ def checkEdit(message):
         return True
     cur.execute("SELECT ID FROM MEMBERS")
     query = cur.fetchall()
-    if int(message.content) in query:
+    if int(message.content) in reduce(lambda x,y :x+y ,query):
         return True
     else:
         return False
@@ -64,8 +64,8 @@ async def on_message(message):
                     await client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await client.wait_for_message(author=message.author,check=checkEdit)
                     if response.content.startswith('abort'):
-                        break
                         await client.send_message(message.channel, 'Process aborted');
+                        break
                     else:
                         sql = """UPDATE MEMBERS SET username=%s 
                         WHERE ID=%d"""
