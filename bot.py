@@ -60,7 +60,7 @@ async def on_message(message):
                     cur.execute("SELECT * FROM MEMBERS")
                     rows = cur.fetchall()
                     for r in rows:
-                        await client.send_message(message.channel, '`'+r+'`');
+                        await client.send_message(message.channel, '`'+str(r)+'`');
                     await client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await client.wait_for_message(author=message.author,check=checkEdit)
                     if response.content.startswith('abort'):
