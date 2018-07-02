@@ -31,7 +31,7 @@ def checkEdit(message):
     else:
         return False
         
-        @asyncio.coroutine
+@asyncio.coroutine
 @client.event
 async def on_message(message):
     if isCommand(message,'bestship'):
