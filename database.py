@@ -14,10 +14,10 @@ class Database:
         self.client = client
         self.establishConnection()
 
-    def checkEntry(message):
+    def checkEntry(self,message):
         return message.content.startswith('new') or message.content.startswith('edit')
         
-    def checkEdit(message):
+    def checkEdit(self,message):
         if message.content.startswith('abort'):
             return True
         cur.execute("SELECT ID FROM MEMBERS")
@@ -29,7 +29,7 @@ class Database:
             return False
 
     @asyncio.coroutine
-    async def updateusers(message):
+    async def updateusers(self,message):
         members_curr = message.server.members
         members_curr = [str(i) for i in members_curr]
         cur.execute("SELECT username FROM MEMBERS")
@@ -70,12 +70,12 @@ class Database:
         conn.commit()
 
     @asyncio.coroutine
-    async def closedb(channel):
+    async def closedb(self,channel):
         conn.close()
         await client.send_message(channel, 'Connection with database closed sir, ready for restart.');
         
     @asyncio.coroutine
-    async def opendb(channel):
+    async def opendb(self,channel):
         conn.close()
         establishConnection()
         await client.send_message(channel, 'Connection with database reestablished sir.');
