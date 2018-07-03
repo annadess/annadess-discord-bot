@@ -3,12 +3,11 @@ import asyncio
 import os
 import psycopg2
 import random
+import misc
+import database
 
 client = discord.Client()
 prefix = '.'
-
-import misc
-import database
 
 @client.event
 async def on_ready():
@@ -16,6 +15,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+    misc = misc.Misc(client)
     database.establishConnection()
     await client.change_presence(game=random.choice(misc.games),afk=False)
 
