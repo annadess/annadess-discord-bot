@@ -3,11 +3,9 @@ import asyncio
 import os
 import psycopg2
 import random
+import bot
 
-client = None
-
-def init(botclient):
-    client = botclient
+client = bot.client
 
 games = [discord.Game(name="detective",type=0),
 discord.Game(name="with Sumo",type=0),

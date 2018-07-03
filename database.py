@@ -3,12 +3,9 @@ import asyncio
 import os
 import psycopg2
 import random
+import bot
 
-client = None
-
-def init(botclient):
-    client = botclient
-
+client = bot.client
 conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
 cur = conn.cursor()
 
