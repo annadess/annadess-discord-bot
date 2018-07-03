@@ -3,12 +3,12 @@ import asyncio
 import os
 import psycopg2
 import random
+import misc
 
 client = discord.Client()
 prefix = '.'
 conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
 cur = conn.cursor()
-games = [discord.Game(name="detective",type=0),discord.Game(name="with Sumo",type=0),discord.Game(name="the android sent by CyberLife",type=0),discord.Game(name="baseball with Hank",type=0),discord.Game(name="wake up Lieutenant",type=0)]
 
 @client.event
 async def on_ready():
@@ -16,7 +16,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
-    await client.change_presence(game=random.choice(games),afk=False)
+    await client.change_presence(game=random.choice(misc.games),afk=False)
 
 def isCommand(message,command):
     return message.content.startswith(prefix+command)
