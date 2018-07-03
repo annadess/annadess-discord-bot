@@ -4,8 +4,8 @@ import os
 import psycopg2
 import random
 
-conn = None
-cur = None
+conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
+cur = conn.cursor()
 
 def establishConnection():
     conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
