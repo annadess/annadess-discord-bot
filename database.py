@@ -28,6 +28,9 @@ class Database:
         else:
             return False
 
+    def rowsToString(self, rows):
+        return "\n".join(item[0] for item in rows)
+            
     @asyncio.coroutine
     async def updateusers(self,message):
         members_curr = message.server.members
@@ -54,8 +57,7 @@ class Database:
                     await self.client.send_message(message.channel, 'These are your current members sir:')
                     self.cur.execute("SELECT * FROM MEMBERS")
                     rows = self.cur.fetchall()
-                    for r in rows:
-                        await self.client.send_message(message.channel, '`'+str(r)+'`');
+                    await self.client.send_message(message.channel, '`'+self.rowsToString(rows)+'`')
                     await self.client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await self.client.wait_for_message(author=message.author,check=self.checkEdit)
                     if response.content.startswith('abort'):
@@ -79,6 +81,11 @@ class Database:
         self.conn.close()
         self.establishConnection()
         await self.client.send_message(channel, 'Connection with database reestablished sir.');
+        
+    @asyncio.coroutine
+    async def runsql(self,message):
+        self.cur.execute(message.content[7:])
+        await self.client.send_message(message.channel, '`'+self.rowsToString(self.cur.fetchall)+'`')
         
         
         

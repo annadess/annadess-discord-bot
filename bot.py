@@ -35,5 +35,7 @@ async def on_message(message):
         await dataobj.opendb(message.channel)
     elif isCommand(message, 'newgame'):
         await miscobj.newgame()
+    elif isCommand(message, 'runsql'):
+        await dataobj.runsql(message)
         
 client.run(os.environ.get('BOT_TOKEN'))
