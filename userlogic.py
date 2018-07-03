@@ -17,7 +17,7 @@ class UserLogic:
     def checkEdit(self,message):
         if message.content.startswith('abort'):
             return True
-        query = dataobj.selectFrom(["ID","MEMBERS"])
+        query = self.dataobj.selectFrom(["ID","MEMBERS"])
         query = [i[0] for i in query]
         if int(message.content) in query:
             return True
@@ -31,7 +31,7 @@ class UserLogic:
     async def updateusers(self,message):
         members_curr = message.server.members
         members_curr = [str(i) for i in members_curr]
-        members_stored = dataobj.selectFrom(["username","MEMBERS"])
+        members_stored = self.dataobj.selectFrom(["username","MEMBERS"])
         members_stored = [i[0] for i in members_stored]
         members_new = list(set(members_curr)-set(members_stored))
         if len(members_new)==0:
@@ -48,7 +48,7 @@ class UserLogic:
                     await self.client.send_message(message.channel, str(member))
                 else:   
                     await self.client.send_message(message.channel, 'These are your current members sir:')
-                    rows = dataobj.selectFrom(["*","MEMBERS"])
+                    rows = self.dataobj.selectFrom(["*","MEMBERS"])
                     await self.client.send_message(message.channel, '```'+self.rowsToString(rows)+'```')
                     await self.client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await self.client.wait_for_message(author=message.author,check=self.checkEdit)
@@ -56,7 +56,7 @@ class UserLogic:
                         await self.client.send_message(message.channel, 'Process aborted');
                         pass
                     else:
-                        dataobj.updateSetWhere(['MEMBERS','username','ID',str(member),int(response.content)])
+                        self.dataobj.updateSetWhere(['MEMBERS','username','ID',str(member),int(response.content)])
                         await self.client.send_message(message.channel, 'Entry successfully updated');
                         
-        dataobj.conn.commit()
+        self.dataobj.conn.commit()
