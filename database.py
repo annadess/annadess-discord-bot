@@ -8,7 +8,7 @@ class Database:
 
     def establishConnection(self):
         self.conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
-        self.cur = conn.cursor()
+        self.cur = self.conn.cursor()
 
     def __init__(self,client):
         self.client = client
