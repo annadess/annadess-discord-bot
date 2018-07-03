@@ -15,8 +15,8 @@ class Database:
         self.establishConnection()
 
     def selectFrom(self, args):
-        sql = "SELECT {0} FROM {1}".format(*args)
-        return self.cur.execute(sql).fetchall()    
+        self.cur.execute("SELECT {0} FROM {1}".format(*args))
+        return self.cur.fetchall()    
         
     def checkEntry(self,message):
         return message.content.startswith('new') or message.content.startswith('edit')
