@@ -74,8 +74,7 @@ async def closedb(channel):
 @asyncio.coroutine
 async def opendb(channel):
     conn.close()
-    conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
-    cur = conn.cursor()
+    establishConnection()
     await client.send_message(channel, 'Connection with database reestablished sir.');
     
     
