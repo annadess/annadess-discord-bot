@@ -19,5 +19,5 @@ discord.Game(name="blowing up Jericho",type=0)]
     
     @asyncio.coroutine
     async def bestship(self,channel):
-        await slef.client.send_message(channel, 'Sir, the Kuno and Wyn pairing, is undoubtedly, the best pairing in this currently running role playing game.')
+        await self.client.send_message(channel, 'Sir, the Kuno and Wyn pairing, is undoubtedly, the best pairing in this currently running role playing game.')
 
