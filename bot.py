@@ -3,11 +3,12 @@ import asyncio
 import os
 import psycopg2
 import random
-import misc
-import database
 
 client = discord.Client()
 prefix = '.'
+
+import misc
+import database
 
 @client.event
 async def on_ready():
