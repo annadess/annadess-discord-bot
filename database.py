@@ -12,7 +12,7 @@ class Database:
 
     def __init__(self,client):
         self.client = client
-        establishConnection()
+        self.establishConnection()
 
     def checkEntry(message):
         return message.content.startswith('new') or message.content.startswith('edit')
