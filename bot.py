@@ -37,5 +37,7 @@ async def on_message(message):
         await miscobj.newgame()
     elif isCommand(message, 'runsql'):
         await dataobj.runsql(message)
+    elif 'gay'.upper() in message.content.upper() and 'connor'.upper() in message.content.upper():
+        await miscobj.bromance(message.channel)
         
 client.run(os.environ.get('BOT_TOKEN'))

@@ -24,4 +24,8 @@ discord.Game(name="blowing up Jericho",type=0)]
     @asyncio.coroutine
     async def newgame(self):
         await self.client.change_presence(game=random.choice(self.games),afk=False)
+        
+    @asyncio.coroutine
+    async def bromance(self,channel):
+        await self.client.send_message(channel, 'I\'m certainly going to miss our bromance.')
 
