@@ -14,14 +14,16 @@ class Database:
         self.client = client
         self.establishConnection()
 
+    def selectFrom(self, args):
+        return self.cur.execute("SELECT %s FROM %s",args).fetchall()    
+        
     def checkEntry(self,message):
         return message.content.startswith('new') or message.content.startswith('edit')
         
     def checkEdit(self,message):
         if message.content.startswith('abort'):
             return True
-        self.cur.execute("SELECT ID FROM MEMBERS")
-        query = self.cur.fetchall()
+        query = selectFrom(["ID","MEMBERS"])
         query = [i[0] for i in query]
         if int(message.content) in query:
             return True
@@ -30,7 +32,7 @@ class Database:
 
     def rowsToString(self, rows):
         return "\n".join(str(item) for item in rows)
-            
+    
     @asyncio.coroutine
     async def updateusers(self,message):
         members_curr = message.server.members
@@ -53,7 +55,7 @@ class Database:
                     self.cur.execute(sql, [str(member)])
                     await self.client.send_message(message.channel, 'Sucessfully added:')
                     await self.client.send_message(message.channel, str(member))
-                else:
+                else:   
                     await self.client.send_message(message.channel, 'These are your current members sir:')
                     self.cur.execute("SELECT * FROM MEMBERS")
                     rows = self.cur.fetchall()
