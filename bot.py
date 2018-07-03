@@ -26,7 +26,7 @@ def isCommand(message,command):
 @client.event
 async def on_message(message):
     if isCommand(message,'bestship'):
-        await misc.bestship(message.channel)
+        await miscobj.bestship(message.channel)
     elif isCommand(message, 'updateusers'):
         await database.updateusers(message)
     elif isCommand(message, 'closedb'):
