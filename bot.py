@@ -5,11 +5,13 @@ import psycopg2
 import random
 import misc
 import database
+import userlogic
 
 client = discord.Client()
 prefix = '.'
 miscobj = misc.Misc(client)
 dataobj = database.Database(client)
+userlogic = userlogic.UserLogic(client,dataobj)
 
 @client.event
 async def on_ready():
@@ -28,7 +30,7 @@ async def on_message(message):
     if isCommand(message,'bestship'):
         await miscobj.bestship(message.channel)
     elif isCommand(message, 'updateusers'):
-        await dataobj.updateusers(message)
+        await userlogic.updateusers(message)
     elif isCommand(message, 'closedb'):
         await dataobj.closedb(message.channel)
     elif isCommand(message, 'opendb'):
