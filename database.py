@@ -23,7 +23,7 @@ class Database:
     def checkEdit(self,message):
         if message.content.startswith('abort'):
             return True
-        query = selectFrom(["ID","MEMBERS"])
+        query = self.selectFrom(["ID","MEMBERS"])
         query = [i[0] for i in query]
         if int(message.content) in query:
             return True
