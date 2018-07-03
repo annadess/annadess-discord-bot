@@ -61,4 +61,4 @@ class UserLogic:
     @asyncio.coroutine
     async def mybirthday(self, message):
         print(str(message.author))
-        print(dataobj.selectFromWhere(['ID','MEMBERS','USERNAME',str(message.author)]))
+        print(self.dataobj.selectFromWhere(['ID','MEMBERS','USERNAME',str(message.author)]))
