@@ -17,7 +17,7 @@ async def on_ready():
     print('------')
     miscobj = misc.Misc(client)
     database.establishConnection()
-    await client.change_presence(game=random.choice(misc.games),afk=False)
+    await client.change_presence(game=random.choice(miscobj.games),afk=False)
 
 def isCommand(message,command):
     return message.content.startswith(prefix+command)
