@@ -57,3 +57,8 @@ class UserLogic:
                         await self.client.send_message(message.channel, 'Entry successfully updated');
                         
         self.dataobj.conn.commit()
+    
+    @asyncio.coroutine
+    async def mybirthday(self, message):
+        print(str(message.author))
+        print(dataobj.selectFromWhere(['ID','MEMBERS','USERNAME',str(message.author)]))

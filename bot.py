@@ -41,5 +41,7 @@ async def on_message(message):
         await dataobj.runsql(message)
     elif 'gay'.upper() in message.content.upper() and 'connor'.upper() in message.content.upper():
         await miscobj.bromance(message.channel)
+    elif isCommand(message, 'mybirthday):
+        await userlogic.mybirthday(message)
         
 client.run(os.environ.get('BOT_TOKEN'))
