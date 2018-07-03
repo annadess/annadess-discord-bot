@@ -23,9 +23,6 @@ class UserLogic:
             return True
         else:
             return False
-
-    def rowsToString(self, rows):
-        return "\n".join(str(item) for item in rows)
     
     @asyncio.coroutine
     async def updateusers(self,message):
@@ -49,7 +46,7 @@ class UserLogic:
                 else:   
                     await self.client.send_message(message.channel, 'These are your current members sir:')
                     rows = self.dataobj.selectFrom(["*","MEMBERS"])
-                    await self.client.send_message(message.channel, '```'+self.rowsToString(rows)+'```')
+                    await self.client.send_message(message.channel, '```'+dataobj.rowsToString(rows)+'```')
                     await self.client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await self.client.wait_for_message(author=message.author,check=self.checkEdit)
                     if response.content.startswith('abort'):

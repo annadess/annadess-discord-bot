@@ -28,6 +28,9 @@ class Database:
                         WHERE {2}=%s""".format(*args[:3])
         self.cur.execute(sql, args[3:])
 
+    def rowsToString(self, rows):
+        return "\n".join(str(item) for item in rows)
+        
     @asyncio.coroutine
     async def closedb(self,channel):
         self.conn.close()
