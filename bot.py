@@ -8,6 +8,7 @@ import database
 
 client = discord.Client()
 prefix = '.'
+miscobj = misc.Misc(client)
 
 @client.event
 async def on_ready():
@@ -15,7 +16,6 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
-    miscobj = misc.Misc(client)
     database.establishConnection()
     await client.change_presence(game=random.choice(miscobj.games),afk=False)
 
