@@ -17,6 +17,16 @@ class Database:
     def selectFrom(self, args):
         self.cur.execute("SELECT {0} FROM {1}".format(*args))
         return self.cur.fetchall()    
+    
+    def insertInto(self,args):
+        sql = """INSERT INTO {0}({1})
+                    VALUES(%s);""".format(*args[:2])
+        self.cur.execute(sql, args[2:])
+        
+    def updateSetWhere(self,args):
+        sql = """UPDATE {0} SET {1}=%s 
+                        WHERE {2}=%s""".format(*args[:3])
+        self.cur.execute(sql, args[3:])
         
     def checkEntry(self,message):
         return message.content.startswith('new') or message.content.startswith('edit')
@@ -38,8 +48,7 @@ class Database:
     async def updateusers(self,message):
         members_curr = message.server.members
         members_curr = [str(i) for i in members_curr]
-        self.cur.execute("SELECT username FROM MEMBERS")
-        members_stored = self.cur.fetchall()
+        members_stored = self.selectFrom(["username","MEMBERS"])
         members_stored = [i[0] for i in members_stored]
         members_new = list(set(members_curr)-set(members_stored))
         if len(members_new)==0:
@@ -51,15 +60,12 @@ class Database:
                 await self.client.send_message(message.channel, '(type new or edit)')
                 response = await self.client.wait_for_message(author=message.author,check=self.checkEntry)
                 if response.content.startswith('new'):
-                    sql = """INSERT INTO MEMBERS(username)
-                    VALUES(%s);"""
-                    self.cur.execute(sql, [str(member)])
+                    self.insertInto(['MEMBERS','username',str(member)])
                     await self.client.send_message(message.channel, 'Sucessfully added:')
                     await self.client.send_message(message.channel, str(member))
                 else:   
                     await self.client.send_message(message.channel, 'These are your current members sir:')
-                    self.cur.execute("SELECT * FROM MEMBERS")
-                    rows = self.cur.fetchall()
+                    rows = self.selectFrom(["*","MEMBERS"])
                     await self.client.send_message(message.channel, '```'+self.rowsToString(rows)+'```')
                     await self.client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await self.client.wait_for_message(author=message.author,check=self.checkEdit)
@@ -67,9 +73,7 @@ class Database:
                         await self.client.send_message(message.channel, 'Process aborted');
                         pass
                     else:
-                        sql = """UPDATE MEMBERS SET username=%s 
-                        WHERE ID=%s"""
-                        self.cur.execute(sql,[str(member),int(response.content)])
+                        self.updateSetWhere(['MEMBERS','username','ID',str(member),int(response.content)])
                         await self.client.send_message(message.channel, 'Entry successfully updated');
                         
         self.conn.commit()
