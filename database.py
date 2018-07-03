@@ -6,14 +6,13 @@ import random
 
 class Database:
 
-    def __init__(self,client):
-        self.client = client
-        self.conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
-        self.cur = conn.cursor()
-
     def establishConnection(self):
         self.conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
         self.cur = conn.cursor()
+
+    def __init__(self,client):
+        self.client = client
+        establishConnection()
 
     def checkEntry(message):
         return message.content.startswith('new') or message.content.startswith('edit')
