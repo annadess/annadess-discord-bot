@@ -4,8 +4,11 @@ import os
 import psycopg2
 import random
 
-conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
-cur = conn.cursor()
+conn = None
+cur = None
+def establishConnection():
+    conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
+    cur = conn.cursor()
 
 def checkEntry(message):
     return message.content.startswith('new') or message.content.startswith('edit')

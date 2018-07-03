@@ -15,6 +15,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+    database.establishConnection()
     await client.change_presence(game=random.choice(misc.games),afk=False)
 
 def isCommand(message,command):
