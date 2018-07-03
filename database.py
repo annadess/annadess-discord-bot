@@ -85,6 +85,7 @@ class Database:
     @asyncio.coroutine
     async def runsql(self,message):
         self.cur.execute(message.content[7:])
+        print self.cur.fetchall()
         await self.client.send_message(message.channel, '`'+self.rowsToString(self.cur.fetchall())+'`')
         
         
