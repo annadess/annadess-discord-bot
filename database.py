@@ -20,7 +20,7 @@ class Database:
         
     def selectFromWhere(self, args):
         sql = "SELECT {0} FROM {1} WHERE {2}=%s".format(*args[:3])
-        self.cur.execute(sql,args[3])
+        self.cur.execute(sql,args[3:])
         return self.cur.fetchall() 
     
     def insertInto(self,args):
