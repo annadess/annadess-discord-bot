@@ -29,7 +29,7 @@ class Database:
             return False
 
     def rowsToString(self, rows):
-        return "\n".join(item[0] for item in rows)
+        return "\n".join(str(item) for item in rows)
             
     @asyncio.coroutine
     async def updateusers(self,message):
@@ -85,7 +85,6 @@ class Database:
     @asyncio.coroutine
     async def runsql(self,message):
         self.cur.execute(message.content[7:])
-        print (self.cur.fetchall()[0])
         await self.client.send_message(message.channel, '`'+self.rowsToString(self.cur.fetchall())+'`')
         
         
