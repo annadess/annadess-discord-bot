@@ -4,6 +4,11 @@ import os
 import psycopg2
 import random
 
+client = discord.Client()
+
+#def init(botclient):
+#    client = botclient
+
 games = [discord.Game(name="detective",type=0),
 discord.Game(name="with Sumo",type=0),
 discord.Game(name="the android sent by CyberLife",type=0),

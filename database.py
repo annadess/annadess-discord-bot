@@ -4,6 +4,11 @@ import os
 import psycopg2
 import random
 
+client = discord.Client()
+
+#def init(botclient):
+#    client = botclient
+
 conn = psycopg2.connect(os.environ.get('DATABASE_URL'), sslmode='require')
 cur = conn.cursor()
 
