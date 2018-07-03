@@ -4,10 +4,10 @@ import os
 import psycopg2
 import random
 
-client = discord.Client()
+client = None
 
-#def init(botclient):
-#    client = botclient
+def init(botclient):
+    client = botclient
 
 games = [discord.Game(name="detective",type=0),
 discord.Game(name="with Sumo",type=0),

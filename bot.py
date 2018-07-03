@@ -15,6 +15,8 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
+    misc.init(client)
+    database.init(client)
     database.establishConnection()
     await client.change_presence(game=random.choice(misc.games),afk=False)
 
