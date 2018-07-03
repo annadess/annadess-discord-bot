@@ -15,7 +15,7 @@ class Database:
         self.establishConnection()
 
     def selectFrom(self, args):
-        return self.cur.execute("SELECT %s FROM %s",args).fetchall()    
+        return self.cur.execute("SELECT {0} FROM {1}".format(*args)).fetchall()    
         
     def checkEntry(self,message):
         return message.content.startswith('new') or message.content.startswith('edit')
@@ -59,7 +59,7 @@ class Database:
                     await self.client.send_message(message.channel, 'These are your current members sir:')
                     self.cur.execute("SELECT * FROM MEMBERS")
                     rows = self.cur.fetchall()
-                    await self.client.send_message(message.channel, '`'+self.rowsToString(rows)+'`')
+                    await self.client.send_message(message.channel, '```'+self.rowsToString(rows)+'```')
                     await self.client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await self.client.wait_for_message(author=message.author,check=self.checkEdit)
                     if response.content.startswith('abort'):
