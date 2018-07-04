@@ -72,4 +72,4 @@ class UserLogic:
         author_id = self.dataobj.selectFromWhere(['ID','MEMBERS','USERNAME',str(message.author)])[0][0]
         if len(self.dataobj.selectFromWhere(['*','BIRTHDAYS','MEMBER_ID',author_id])) == 0 and self.validate(message.content[12:]):
             #self.dataobj.insertInto(['BIRTHDAYS','birthdate , MEMBER_ID',datetime.datetime.strptime(message.content[12:], '%Y-%m-%d'),str(author_id)])
-            print((['BIRTHDAYS','birthdate , MEMBER_ID',datetime.datetime.strptime(message.content[12:], '%Y-%m-%d'),str(author_id)]))
+            print((['BIRTHDAYS','birthdate , MEMBER_ID',str(datetime.datetime.strptime(message.content[12:], '%Y-%m-%d')),str(author_id)]))
