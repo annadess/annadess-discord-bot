@@ -4,6 +4,7 @@ import os
 import psycopg2
 import random
 import database
+import datetime
 
 class UserLogic:
     
@@ -22,6 +23,14 @@ class UserLogic:
         if int(message.content) in query:
             return True
         else:
+            return False
+            
+    def validate(date_text):
+        try:
+            datetime.datetime.strptime(date_text, '%Y-%m-%d')
+            return True
+        except ValueError:
+            raise ValueError("Incorrect data format, should be YYYY-MM-DD")
             return False
     
     @asyncio.coroutine
@@ -61,4 +70,5 @@ class UserLogic:
     @asyncio.coroutine
     async def mybirthday(self, message):
         author_id = self.dataobj.selectFromWhere(['ID','MEMBERS','USERNAME',str(message.author)])[0][0]
-        print(self.dataobj.selectFromWhere(['*','BIRTHDAYS','MEMBER_ID',author_id]))
+        if len(self.dataobj.selectFromWhere(['*','BIRTHDAYS','MEMBER_ID',author_id])) == 0 and validate(message.content[12:]):
+            self.dataobj.insertInto(['BIRTHDAYS','birthdate , MEMBER_ID',datetime.datetime.strptime(message.content[12:], '%Y-%m-%d'),author_id])
