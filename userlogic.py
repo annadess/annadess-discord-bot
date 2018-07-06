@@ -92,4 +92,6 @@ class UserLogic:
             difference = birthdate - today
             birthdays.append((difference.days,username))
         birthdays.sort()
-        await self.client.send_message(channel, '```'+self.dataobj.rowsToString(birthdays)+'```')
+        result = [row[1]+"'s birthday is in "+row[0]+" days." for row in birthdays]
+        await self.client.send_message(channel, "Upcoming birthdays:")
+        await self.client.send_message(channel, self.dataobj.rowsToString(result))
