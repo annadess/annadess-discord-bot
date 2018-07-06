@@ -73,9 +73,11 @@ class UserLogic:
         if len(self.dataobj.selectFromWhere(['*','BIRTHDAYS','MEMBER_ID',author_id])) == 0 and self.validate(message.content[12:]):
             self.dataobj.insertInto(['BIRTHDAYS','birthdate , MEMBER_ID',message.content[12:],str(author_id)])
             self.dataobj.conn.commit()
+            await self.client.send_message(message.channel, 'Sir, your date of birth has been successfully recorded.')
         elif self.validate(message.content[12:]):
             self.dataobj.updateSetWhere(['BIRTHDAYS','birthdate','MEMBER_ID',message.content[12:],str(author_id)])
             self.dataobj.conn.commit()
+            await self.client.send_message(message.channel, 'Sir, your date of birth has been successfully updated.')
             
     @asyncio.coroutine
     async def nextbirthdays(self, channel):
@@ -86,8 +88,9 @@ class UserLogic:
             today = datetime.datetime.today().date()
             birthdate = birthdate.replace(year=today.year)
             if birthdate < today:
+                print("something")
                 birthdate.replace(year=today.year + 1)
-            difference = today - birthdate
+            difference = birthdate - today
             birthdays.append((difference.days,username))
         birthdays.sort()
         await self.client.send_message(channel, '```'+self.dataobj.rowsToString(birthdays)+'```')
