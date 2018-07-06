@@ -79,8 +79,14 @@ class UserLogic:
             
     @asyncio.coroutine
     async def nextbirthdays(self, channel):
+        brithdays = []
         for row in self.dataobj.selectFrom(['birthdate, MEMBER_ID', 'BIRTHDAYS']):
             birthdate, member_id = row
-            username = self.dataobj.selectFromWhere(['username','MEMBERS','ID',member_id])
-            print(birthdate)
-            print(username)
+            birthdate = datetime.datetime.strptime(birthdate, '%Y-%m-%d')
+            username = self.dataobj.selectFromWhere(['username','MEMBERS','ID',member_id])[0][0]
+            now = datetime.datetime.now()
+            birthdate = birthdate.replace(year=now.year)
+            if birthdate < now:
+                birthdate.replace(year=now.year + 1)
+            difference = now - birthdate
+            print((difference,username))
