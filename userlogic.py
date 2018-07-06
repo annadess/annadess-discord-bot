@@ -55,7 +55,7 @@ class UserLogic:
                 else:   
                     await self.client.send_message(message.channel, 'These are your current members sir:')
                     rows = self.dataobj.selectFrom(["*","MEMBERS"])
-                    await self.client.send_message(message.channel, '```'+dataobj.rowsToString(rows)+'```')
+                    await self.client.send_message(message.channel, '```'+self.dataobj.rowsToString(rows)+'```')
                     await self.client.send_message(message.channel, 'Which username would you like to update? (type id number or abort)')
                     response = await self.client.wait_for_message(author=message.author,check=self.checkEdit)
                     if response.content.startswith('abort'):
@@ -90,4 +90,4 @@ class UserLogic:
             difference = today - birthdate
             birthdays.append((difference.days,username))
         birthdays.sort()
-        await self.client.send_message(channel, '```'+dataobj.rowsToString(birthdays)+'```')
+        await self.client.send_message(channel, '```'+self.dataobj.rowsToString(birthdays)+'```')
