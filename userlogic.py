@@ -83,8 +83,8 @@ class UserLogic:
         for row in self.dataobj.selectFrom(['birthdate, MEMBER_ID', 'BIRTHDAYS']):
             birthdate, member_id = row
             username = self.dataobj.selectFromWhere(['username','MEMBERS','ID',member_id])[0][0]
-            today = datetime.datetime.today()
-            birthdate = birthdate.replace(year=today.year).date()
+            today = datetime.datetime.today().date()
+            birthdate = birthdate.replace(year=today.year)
             if birthdate < today:
                 birthdate.replace(year=today.year + 1)
             difference = today - birthdate
