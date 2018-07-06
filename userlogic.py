@@ -82,7 +82,6 @@ class UserLogic:
         brithdays = []
         for row in self.dataobj.selectFrom(['birthdate, MEMBER_ID', 'BIRTHDAYS']):
             birthdate, member_id = row
-            birthdate = datetime.datetime.strptime(birthdate, '%Y-%m-%d')
             username = self.dataobj.selectFromWhere(['username','MEMBERS','ID',member_id])[0][0]
             now = datetime.datetime.now()
             birthdate = birthdate.replace(year=now.year)
