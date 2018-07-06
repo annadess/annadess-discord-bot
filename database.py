@@ -26,7 +26,6 @@ class Database:
     def insertInto(self,args):
         sql = """INSERT INTO {0}({1})
                     VALUES(%s"""+(", %s")*len(args[3:])+");"
-        print(len(args[3:]))            
         sql = sql.format(*args[:2])
         self.cur.execute(sql, args[2:])
         
