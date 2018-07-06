@@ -89,7 +89,9 @@ class UserLogic:
             birthdate = birthdate.replace(year=today.year)
             if birthdate < today:
                 print("something")
-                birthdate.replace(year=birthdate.year + 1)
+                print((birthdate.year + 1))
+                birthdate.replace(year=(birthdate.year + 1))
+                print((birthdate.year + 1))
                 print(birthdate)
             difference = birthdate - today
             birthdays.append((difference.days,username))
