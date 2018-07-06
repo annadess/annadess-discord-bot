@@ -43,5 +43,7 @@ async def on_message(message):
         await miscobj.bromance(message.channel)
     elif isCommand(message, 'mybirthday'):
         await userlogic.mybirthday(message)
+    elif isCommand(message, 'nextbirthdays'):
+        await userlogic.nextbirthdays(message.channel)
         
 client.run(os.environ.get('BOT_TOKEN'))
