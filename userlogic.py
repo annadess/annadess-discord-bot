@@ -88,6 +88,6 @@ class UserLogic:
             if birthdate < today:
                 birthdate.replace(year=today.year + 1)
             difference = today - birthdate
-            birthdays.append((difference.dt.days,username))
+            birthdays.append((difference.days,username))
         birthdays.sort()
         await self.client.send_message(channel, '```'+dataobj.rowsToString(birthdays)+'```')
