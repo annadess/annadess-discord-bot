@@ -79,7 +79,7 @@ class UserLogic:
             
     @asyncio.coroutine
     async def nextbirthdays(self, channel):
-        brithdays = []
+        birthdays = []
         for row in self.dataobj.selectFrom(['birthdate, MEMBER_ID', 'BIRTHDAYS']):
             birthdate, member_id = row
             username = self.dataobj.selectFromWhere(['username','MEMBERS','ID',member_id])[0][0]
@@ -89,5 +89,5 @@ class UserLogic:
                 birthdate.replace(year=today.year + 1)
             difference = today - birthdate
             birhdays.append((difference.dt.days,username))
-        #birhdays.sort(key=lamba tup: tup[0])
-        await self.client.send_message(channel, '```'+dataobj.rowsToString(birhdays)+'```')
+        birthdays.sort()
+        await self.client.send_message(channel, '```'+dataobj.rowsToString(birthdays)+'```')
