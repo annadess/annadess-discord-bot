@@ -49,8 +49,7 @@ class UserLogic:
                 await self.client.send_message(message.channel, '(type new or edit)')
                 response = await self.client.wait_for_message(author=message.author,check=self.checkEntry)
                 if response.content.startswith('new'):
-                    print("I'm here where I'm supposed to be")
-                    self.insertInto(['MEMBERS','username',str(member)])
+                    self.dataobj.insertInto(['MEMBERS','username',str(member)])
                     await self.client.send_message(message.channel, 'Sucessfully added:')
                     await self.client.send_message(message.channel, str(member))
                 else:   
