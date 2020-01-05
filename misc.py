@@ -19,7 +19,7 @@ discord.Game(name="blowing up Jericho",type=0)]
     
     @asyncio.coroutine
     async def bestship(self,channel):
-        await self.client.send_message(channel, 'Sir, the Kuno and Wyn pairing, is undoubtedly, the best pairing in this currently running role playing game.')
+        await self.client.send_message(channel, 'Sir, the Kuno and Wyn pairing, is undoubtedly, the best pairing out of all of them.')
         
     @asyncio.coroutine
     async def newgame(self):
@@ -31,11 +31,24 @@ discord.Game(name="blowing up Jericho",type=0)]
 
     @asyncio.coroutine
     async def helpen(self,channel):
-        await self.client.send_message(channel, """```Multi
-Line
-Test```""")
-                                 
+        await self.client.send_message(channel, """```
+Commands:
+bestship - Connor's opinion on the best ship.
+updateusers - Upadtes the database for username/tag changes, or when new users joined the server.
+newgame - Makes Connor play a new game. (Playing [...])
+mybirthday [YYYY-MM-DD] - Saves your birthday.
+nextbirthdays - Shows upcoming birthdays.
+help - This message appears.
+help hu - This message but in Hungarian.```""")
+
     @asyncio.coroutine
     async def helphu(self,channel):
-        await self.client.send_message(channel, """```Többsoros
-Teszt```""")
+        await self.client.send_message(channel, """```
+Parancsok:
+bestship - Connor véleménye a kedvenc RP párról.
+updateusers - Frissíti az adatbázist ha változtak a felhasználónevek, vagy ha új felhasználók csatlakoztak a szerverhez.
+newgame - Connor más játékot fog játszani. (Játszik [...] rész)
+mybirthday [YYYY-MM-DD] - Elmenti a születésnapodat.
+nextbirthdays - Mutatja a következő születésnapokat.
+help - Ez az üzenet, de angolul.
+help hu - Ezt az üzenetet megjeleníti.```""")
