@@ -31,11 +31,11 @@ discord.Game(name="blowing up Jericho",type=0)]
 
     @asyncio.coroutine
     async def helpen(self,channel):
-        self.client.send_message(channel, """```Multi
+        await self.client.send_message(channel, """```Multi
 Line
 Test```""")
                                  
     @asyncio.coroutine
     async def helphu(self,channel):
-        self.client.send_message(channel, """```Többsoros
+        await self.client.send_message(channel, """```Többsoros
 Teszt```""")
