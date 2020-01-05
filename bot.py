@@ -45,5 +45,9 @@ async def on_message(message):
         await userlogic.mybirthday(message)
     elif isCommand(message, 'nextbirthdays'):
         await userlogic.nextbirthdays(message.channel)
+    elif isCommand(message, 'help hu'):
+        await miscobj.helphu(message.channel)
+    elif isCommand(message, 'help'):
+        await miscobj.helpen(message.channel)
         
 client.run(os.environ.get('BOT_TOKEN'))
