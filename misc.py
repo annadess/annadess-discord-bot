@@ -29,3 +29,13 @@ discord.Game(name="blowing up Jericho",type=0)]
     async def bromance(self,channel):
         await self.client.send_message(channel, 'I\'m certainly going to miss our bromance.')
 
+    @asyncio.coroutine
+    async def helpen(self,channel):
+        self.client.send_message(channel, """```Multi
+Line
+Test```""")
+                                 
+    @asyncio.coroutine
+    async def helphu(self,channel):
+        self.client.send_message(channel, """```Többsoros
+Teszt```""")
