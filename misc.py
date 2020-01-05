@@ -34,7 +34,6 @@ discord.Game(name="blowing up Jericho",type=0)]
         await self.client.send_message(channel, """```
 Commands:
 bestship - Connor's opinion on the best ship.
-updateusers - Upadtes the database for username/tag changes, or when new users joined the server.
 newgame - Makes Connor play a new game. (Playing [...])
 mybirthday [YYYY-MM-DD] - Saves your birthday.
 nextbirthdays - Shows upcoming birthdays.
@@ -46,7 +45,6 @@ help hu - This message but in Hungarian.```""")
         await self.client.send_message(channel, """```
 Parancsok:
 bestship - Connor véleménye a kedvenc RP párról.
-updateusers - Frissíti az adatbázist ha változtak a felhasználónevek, vagy ha új felhasználók csatlakoztak a szerverhez.
 newgame - Connor más játékot fog játszani. (Játszik [...] rész)
 mybirthday [YYYY-MM-DD] - Elmenti a születésnapodat.
 nextbirthdays - Mutatja a következő születésnapokat.
