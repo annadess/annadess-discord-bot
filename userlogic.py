@@ -35,7 +35,7 @@ class UserLogic:
     
     @asyncio.coroutine
     async def updateusers(self,message):
-        members_curr = message.server.members
+        members_curr = message.guild.members
         members_curr = [str(i) for i in members_curr]
         members_stored = self.dataobj.selectFrom(["username","MEMBERS"])
         members_stored = [i[0] for i in members_stored]
