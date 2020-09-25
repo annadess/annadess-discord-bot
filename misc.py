@@ -18,8 +18,8 @@ discord.Game(name="your buddy to drink with",type=0),
 discord.Game(name="blowing up Jericho",type=0)]
     
     @asyncio.coroutine
-    async def bestship(self,channel):
-        await self.client.send_message(channel, 'Sir, the Kuno and Wyn pairing, is undoubtedly, the best pairing out of all of them.')
+    async def bestship(ctx):
+        await ctx.send('Sir, the Kuno and Wyn pairing, is undoubtedly, the best pairing out of all of them.')
         
     @asyncio.coroutine
     async def newgame(self):
