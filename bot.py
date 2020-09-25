@@ -13,7 +13,7 @@ miscobj = misc.Misc(client)
 dataobj = database.Database(client)
 userlogic = userlogic.UserLogic(client,dataobj)
 
-@bot.event
+@client.event
 async def on_ready():
     print('Logged in as')
     print(client.user.name)
@@ -21,7 +21,7 @@ async def on_ready():
     print('------')
     await client.change_presence(game=random.choice(miscobj.games),afk=False)
 
-@bot.command()
+@client.command()
 async def test(ctx, description="Test"):
 	await miscobj.bestship(ctx)
 	
