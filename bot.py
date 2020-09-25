@@ -19,7 +19,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
-    await client.change_presence(game=random.choice(miscobj.games),afk=False)
+    #await client.change_presence(game=random.choice(miscobj.games),afk=False)
 
 @client.command()
 async def test(ctx, description="Test"):
